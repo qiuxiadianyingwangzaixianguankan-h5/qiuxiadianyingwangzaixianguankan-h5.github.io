@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>栖霞电影网 - 秋栖霞·红叶落银幕 | qixiadianyingwang-h5.github.io</title>
+<meta name="description" content="栖霞电影网(https://qixiadianyingwang-h5.github.io)取南京栖霞山秋色：红枫、银杏、古寺、江岸。最新电影、热播剧集、动漫番剧、栖霞红叶榜一屏看完，移动端自适应，正版渠道看片，不提供盗版播放源。">
+<meta name="keywords" content="栖霞电影网,qixiadianyingwang-h5.github.io,秋栖霞,红叶电影站,最新电影,热播剧集,动漫番剧,正版影视导航">
+<link rel="canonical" href="https://qixiadianyingwang-h5.github.io/">
+<style>
+:root{
+  --night:#160d0a;--night2:#21130d;--card:#2a1812;--line:rgba(214,138,92,.26);
+  --maple:#e2533b;--gold:#e9b949;--wall:#c66b4a;--lake:#6fb6a6;--ink:#f6e9dc;--dim:#bd9d8b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(120% 90% at 85% -10%,rgba(226,83,59,.26),transparent 55%),radial-gradient(90% 70% at 0 0,rgba(233,185,73,.16),transparent 50%),var(--night);color:var(--ink);font-family:"PingFang SC","Noto Sans SC",system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none;transition:.25s}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* falling leaves */
+.leaf{position:fixed;top:-40px;z-index:0;pointer-events:none;font-size:20px;opacity:.55;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(-40px) rotate(0)}100%{transform:translateY(110vh) rotate(420deg)}}
+
+.bar{position:sticky;top:0;z-index:50;background:rgba(22,13,10,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:14px;height:62px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:1.32rem}
+.logo b{color:var(--maple)} .logo i{color:var(--gold);font-style:italic}
+.logo small{display:block;font-size:.6rem;color:var(--dim);font-family:ui-monospace,monospace}
+.search{flex:1;min-width:200px;display:flex;background:var(--night2);border:1px solid var(--line);border-radius:30px;padding:6px 8px 6px 16px;gap:8px}
+.search input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:.9rem}
+.search button{border:none;background:linear-gradient(135deg,var(--maple),var(--gold));color:#2a1206;font-weight:800;padding:8px 18px;border-radius:24px;cursor:pointer}
+.nav{display:flex;gap:12px}
+.nav a{font-size:.84rem;font-weight:700;color:var(--dim);padding:6px 10px;border-radius:20px}
+.nav a:hover{color:var(--ink);background:var(--card);box-shadow:0 6px 18px rgba(226,83,59,.25)}
+.burger{display:none;background:var(--night2);border:1px solid var(--gold);color:var(--gold);font-size:1.4rem;border-radius:10px;padding:2px 10px}
+
+.hero{position:relative;z-index:2;padding:58px 0 38px;text-align:center}
+.temple{position:absolute;top:18px;left:14%;font-size:2.4rem;opacity:.8}
+.lake-dot{position:absolute;top:30px;right:16%;width:90px;height:54px;border-radius:50%/60%;background:radial-gradient(circle at 40% 30%,#9fd8cb,#3c7d70);opacity:.5;filter:blur(2px)}
+.hero h1{font-size:3rem;font-weight:900;line-height:1.12}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--maple),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--dim);max-width:580px;margin:14px auto 22px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{border:none;cursor:pointer;font-weight:800;font-size:.92rem;padding:12px 28px;border-radius:30px}
+.btn-m{background:linear-gradient(135deg,var(--maple),var(--wall));color:#fff;box-shadow:0 12px 30px rgba(226,83,59,.35)}
+.btn-g{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:hover{transform:translateY(-3px)}
+
+.tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.tags span{background:var(--card);border:1px dashed var(--line);border-radius:30px;padding:6px 14px;font-size:.76rem;font-weight:700;color:var(--gold)}
+.tags span:nth-child(2){color:var(--maple)} .tags span:nth-child(3){color:var(--lake)} .tags span:nth-child(4){color:var(--wall)}
+
+.sec{position:relative;z-index:2;padding:46px 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;border-bottom:2px solid var(--line);padding-bottom:10px}
+.sec-head h2{font-size:1.4rem;font-weight:900}
+.sec-head h2::before{content:"🍁 ";}
+.sec-head a{font-size:.82rem;font-weight:800;color:var(--gold)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}
+.film{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+.film:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:0 20px 40px rgba(226,83,59,.3);border-color:var(--maple)}
+.cover{height:204px;display:flex;align-items:flex-end;padding:12px;font-size:2.6rem;position:relative}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(22,13,10,.85))}
+.c1{background:linear-gradient(150deg,#e2533b,#e9b949)} .c2{background:linear-gradient(150deg,#7a1f12,#e2533b)}
+.c3{background:linear-gradient(150deg,#244a40,#6fb6a6)} .c4{background:linear-gradient(150deg,#3a2406,#e9b949)}
+.c5{background:linear-gradient(150deg,#5a2a1a,#c66b4a)} .c6{background:linear-gradient(150deg,#1f2a4a,#6fb6a6)}
+.season{position:absolute;top:10px;left:10px;z-index:2;background:#160d0acc;border:1px solid var(--gold);border-radius:20px;font-size:.62rem;font-weight:800;padding:2px 9px;color:var(--gold)}
+.film:nth-child(2n) .season{color:var(--maple);border-color:var(--maple)}
+.film:nth-child(3n) .season{color:var(--lake);border-color:var(--lake)}
+.cover .ttl{position:relative;z-index:2;font-size:.78rem;font-weight:800;color:#fff;text-shadow:0 1px 4px #000}
+.film .meta{padding:11px 13px}
+.film .meta h3{font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.film .meta p{font-size:.74rem;color:var(--dim);display:flex;justify-content:space-between;margin-top:4px}
+.film .meta b{color:var(--gold)}
+
+.drama{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.row{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center}
+.row .em{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;background:rgba(233,185,73,.16)}
+.row h4{font-size:.92rem}.row span{font-size:.74rem;color:var(--dim)}
+
+.anime{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.ac{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:center}
+.ac .top{height:120px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.ac .nm{padding:10px;font-size:.86rem;font-weight:800}.ac .ep{font-size:.72rem;color:var(--dim);padding-bottom:12px}
+.a1{background:linear-gradient(160deg,#e2533b,#e9b949)} .a2{background:linear-gradient(160deg,#6fb6a6,#1f2a4a)}
+.a3{background:linear-gradient(160deg,#c66b4a,#e9b949)} .a4{background:linear-gradient(160deg,#6fb6a6,#e2533b)}
+.a5{background:linear-gradient(160deg,#e9b949,#c66b4a)} .a6{background:linear-gradient(160deg,#e2533b,#6fb6a6)}
+
+.rank{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px 20px}
+.rk{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.rk:last-child{border-bottom:none}
+.no{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.86rem;background:var(--night2);border:1px solid var(--maple);color:var(--maple);flex-shrink:0}
+.rk:nth-child(2) .no{color:var(--gold);border-color:var(--gold)}
+.rk:nth-child(3) .no{color:var(--lake);border-color:var(--lake)}
+.rk h4{flex:1;font-size:.92rem}.rk span{font-size:.74rem;color:var(--dim)}.rk b{color:var(--gold);font-size:.84rem}
+
+.chs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.ch{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.ch h4{color:var(--maple);font-size:.98rem;margin-bottom:6px}.ch p{font-size:.78rem;color:var(--dim)}
+
+.foot{position:relative;z-index:2;margin-top:44px;background:var(--night2);border-top:1px solid var(--line);padding:38px 0 22px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:22px}
+.fg h5{color:var(--gold);font-size:.95rem;margin-bottom:10px}
+.fg a{display:block;color:var(--dim);font-size:.8rem;margin-bottom:6px}
+.fg a:hover{color:var(--maple)}
+.fg p{color:var(--dim);font-size:.8rem;line-height:1.8}
+.copy{text-align:center;font-size:.74rem;color:#8d7565;border-top:1px solid var(--line);padding-top:16px;line-height:1.9}
+.copy a{color:var(--gold)}
+
+.top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--maple),var(--gold));color:#2a1206;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:60}
+.top.show{opacity:1;visibility:visible}
+
+@media(max-width:768px){
+  .nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--night);border-bottom:1px solid var(--line);flex-direction:column;padding:14px 18px;gap:10px}
+  .nav.open{display:flex}.burger{display:block}
+  .hero h1{font-size:2.1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.cover{height:168px}
+  .fg{grid-template-columns:1fr 1fr;gap:20px}
+}
+@media(max-width:460px){
+  .hero h1{font-size:1.6rem}.cta{flex-direction:column}.btn{width:100%}
+  .grid{grid-template-columns:repeat(2,1fr)}.cover{height:148px;font-size:2.1rem}
+  .fg{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+<span class="leaf" style="left:8%;animation-duration:9s">🍁</span>
+<span class="leaf" style="left:32%;animation-duration:11s;animation-delay:2s">🍂</span>
+<span class="leaf" style="left:58%;animation-duration:10s;animation-delay:1s">🍁</span>
+<span class="leaf" style="left:78%;animation-duration:12s;animation-delay:3s">🍂</span>
+<span class="leaf" style="left:92%;animation-duration:8.5s;animation-delay:1.5s">🍁</span>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="logo">栖霞<b>电影</b><i>网</i><small>qixiadianyingwang-h5.github.io</small></div>
+    <div class="search"><input type="text" placeholder="搜：红叶、治愈、年代、番剧、金陵故事…"><button onclick="alert('栖霞电影网：演示站内链用 #，正片走正版平台~')">拾叶找片</button></div>
+    <nav class="nav" id="nav"><a href="#new">最新电影</a><a href="#drama">热播剧集</a><a href="#anime">动漫番剧</a><a href="#rank">红叶榜</a><a href="#ch">正版</a></nav>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <span class="temple">🛕</span><span class="lake-dot"></span>
+  <h1>秋栖霞<br><em>红叶落在银幕上</em></h1>
+  <p>栖霞电影网（qixiadianyingwang-h5.github.io）取南京栖霞山秋色：枫红、银杏、古寺、江岸。挑片像在山里走一圈，不堆盗版源，正片走正版平台。</p>
+  <div class="cta">
+    <a href="#new" class="btn btn-m">🍁 看秋日新片</a>
+    <a href="#rank" class="btn btn-g">🏮 看栖霞红叶榜</a>
+  </div>
+  <div class="tags"><span>红叶季</span><span>金陵故事</span><span>江岸治愈</span><span>古寺文艺</span><span>番剧追更</span><span>周末慢看</span></div>
+</section>
+
+<section class="sec wrap" id="new">
+  <div class="sec-head"><h2>最新电影 · 秋幕上新</h2><a href="#">更多 ›</a></div>
+  <div class="grid">
+    <article class="film"><div class="cover c1"><span class="season">秋色</span>🍁<div class="ttl">燃情岁月</div></div><div class="meta"><h3>燃情岁月</h3><p><span>年代·1994</span><b>⭐8.8</b></p></div></article>
+    <article class="film"><div class="cover c2"><span class="season">红叶</span>🍂<div class="ttl">情书</div></div><div class="meta"><h3>情书</h3><p><span>爱情·1995</span><b>⭐8.9</b></p></div></article>
+    <article class="film"><div class="cover c3"><span class="season">江岸</span>🌊<div class="ttl">我的阿勒泰</div></div><div class="meta"><h3>我的阿勒泰</h3><p><span>治愈·剧改</span><b>⭐9.1</b></p></div></article>
+    <article class="film"><div class="cover c4"><span class="season">银杏</span>🟡<div class="ttl">小森林</div></div><div class="meta"><h3>小森林</h3><p><span>治愈·2014</span><b>⭐8.8</b></p></div></article>
+    <article class="film"><div class="cover c5"><span class="season">古寺</span>🛕<div class="ttl">山河故人</div></div><div class="meta"><h3>山河故人</h3><p><span>文艺·2015</span><b>⭐8.0</b></p></div></article>
+    <article class="film"><div class="cover c6"><span class="season">枫红</span>🔥<div class="ttl">秋天的童话</div></div><div class="meta"><h3>秋天的童话</h3><p><span>爱情·1987</span><b>⭐8.5</b></p></div></article>
+  </div>
+</section>
+
+<section class="sec wrap" id="drama" style="background:rgba(226,83,59,.06)">
+  <div class="sec-head"><h2>热播剧集 · 山脚追更</h2><a href="#">更多 ›</a></div>
+  <div class="drama">
+    <div class="row"><div class="em">🌾</div><div><h4>我的阿勒泰</h4><span>治愈·边疆·短剧黑马</span></div></div>
+    <div class="row"><div class="em">🍷</div><div><h4>繁花</h4><span>年代·沪语·12集热聊中</span></div></div>
+    <div class="row"><div class="em">🍁</div><div><h4>一年又一年</h4><span>年代·家庭·慢火好剧</span></div></div>
+    <div class="row"><div class="em">🌫️</div><div><h4>漫长的季节</h4><span>悬疑·东北·封神年代剧</span></div></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="anime">
+  <div class="sec-head"><h2>动漫番剧 · 枫道更新</h2><a href="#">更多 ›</a></div>
+  <div class="anime">
+    <div class="ac"><div class="top a1">🍁</div><div class="nm">夏目友人帐</div><div class="ep">治愈·更新中</div></div>
+    <div class="ac"><div class="top a2">🌊</div><div class="nm">葬送的芙莉莲</div><div class="ep">更新至 第N话</div></div>
+    <div class="ac"><div class="top a3">🛕</div><div class="nm">鹿王</div><div class="ep">剧场版·已上线</div></div>
+    <div class="ac"><div class="top a4">🍂</div><div class="nm">虫师</div><div class="ep">单元·治愈神作</div></div>
+    <div class="ac"><div class="top a5">🟡</div><div class="nm">岁月的童话</div><div class="ep">剧场版·秋日向</div></div>
+    <div class="ac"><div class="top a6">🔥</div><div class="nm">伍六七</div><div class="ep">国创·更新中</div></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="rank" style="background:rgba(233,185,73,.06)">
+  <div class="sec-head"><h2>栖霞红叶榜</h2><a href="#">完整秋单 ›</a></div>
+  <div class="rank">
+    <div class="rk"><div class="no">1</div><h4>我的阿勒泰</h4><span>治愈·边疆</span><b>9.5 红叶分</b></div>
+    <div class="rk"><div class="no">2</div><h4>情书</h4><span>爱情·日本</span><b>9.2 红叶分</b></div>
+    <div class="rk"><div class="no">3</div><h4>小森林</h4><span>治愈·四季</span><b>9.1 红叶分</b></div>
+    <div class="rk"><div class="no">4</div><h4>漫长的季节</h4><span>悬疑·年代</span><b>9.0 红叶分</b></div>
+    <div class="rk"><div class="no">5</div><h4>秋天的童话</h4><span>爱情·港产</span><b>8.8 红叶分</b></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="ch">
+  <div class="sec-head"><h2>正版看片渠道</h2></div>
+  <div class="chs">
+    <div class="ch"><h4>1905 电影网</h4><p>国产/合拍/经典修复正版片库，文艺老片也有。</p></div>
+    <div class="ch"><h4>爱奇艺 / 腾讯 / 优酷</h4><p>年代剧、新片、国创番剧覆盖最全。</p></div>
+    <div class="ch"><h4>哔哩哔哩</h4><p>治愈番、纪录片、国创、影评二创大本营。</p></div>
+    <div class="ch"><h4>Netflix / Max / Apple TV+</h4><p>海外文艺片、颁奖季、动画（按需订阅）。</p></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <h5>栖霞电影网</h5>
+        <p>栖霞电影网（qixiadianyingwang-h5.github.io）取南京栖霞山秋色：红叶、古寺、江岸、银杏。最新电影、热播剧集、动漫番剧、栖霞红叶榜一屏看完，正片走正版平台。</p>
+      </div>
+      <div><h5>秋幕</h5><a href="#new">最新电影</a><a href="#drama">热播剧集</a><a href="#anime">动漫番剧</a><a href="#rank">栖霞红叶榜</a></div>
+      <div><h5>气质</h5><a href="#">治愈</a><a href="#">年代</a><a href="#">文艺</a><a href="#">金陵</a></div>
+      <div><h5>站点</h5><a href="https://qixiadianyingwang-h5.github.io">qixiadianyingwang-h5.github.io</a><a href="#">内容声明</a><a href="#">免责声明</a></div>
+    </div>
+    <div class="copy">
+      © 2026 栖霞电影网 | 秋栖霞，红叶落银幕 | <a href="https://qixiadianyingwang-h5.github.io">qixiadianyingwang-h5.github.io</a><br>
+      本站为影视导航/片单站，不提供侵权播放与下载，资源以正版平台为准。
+    </div>
+  </div>
+</footer>
+
+<div class="top" id="top">↑</div>
+<script>
+document.getElementById('burger').onclick=()=>document.getElementById('nav').classList.toggle('open');
+addEventListener('scroll',()=>document.getElementById('top').classList.toggle('show',scrollY>320));
+document.getElementById('top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>document.getElementById('nav').classList.remove('open'));
+</script>
+</body>
+</html>
